@@ -22,7 +22,6 @@ module.exports = {
                 name varchar
             );
 
-            *****YOUR CODE HERE*****
             create table cities (
                 city_id serial primary key,
                 name varchar(50) not null,
