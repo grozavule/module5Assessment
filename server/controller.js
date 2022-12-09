@@ -12,6 +12,11 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 });
 
 module.exports = {
+    getCountries: (req, res) => {
+        sequelize.query(`select * from countries`)
+        .then(db => res.status(200).send(db[0]))
+        .catch(error => console.log(error));
+    },
     seed: (req, res) => {
         sequelize.query(`
             drop table if exists cities;
