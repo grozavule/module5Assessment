@@ -23,6 +23,16 @@ module.exports = {
         .then(db => res.sendStatus(200))
         .catch(error => console.log(error));
     },
+    deleteCity: (req, res) => {
+        //console.log(req.params);
+        //res.sendStatus(200);
+        let { id } = req.params;
+        sequelize.query(`
+            delete from cities where city_id=${id};
+        `)
+        .then(db => res.sendStatus(200))
+        .catch(error => console.log(error));
+    },
     getCities: (req, res) => {
         sequelize.query(`
             select ci.city_id, ci.name city, ci.rating, co.country_id, co.name country
