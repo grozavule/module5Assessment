@@ -23,6 +23,14 @@ module.exports = {
         .then(db => res.sendStatus(200))
         .catch(error => console.log(error));
     },
+    getCities: (req, res) => {
+        sequelize.query(`
+            select ci.city_id, ci.name city, ci.rating, co.country_id, co.name country
+            from cities ci join countries co on ci.country_id=co.country_id;
+        `)
+        .then(db => res.status(200).send(db[0]))
+        .catch(error => console.log(error));
+    },
     getCountries: (req, res) => {
         sequelize.query(`select * from countries`)
         .then(db => res.status(200).send(db[0]))
